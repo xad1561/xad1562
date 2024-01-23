@@ -10,8 +10,7 @@ module.exports = {
 		.addStringOption(option =>
 			option.setName('pokemon')
 				.setDescription('The Pokemon to get info about')
-				.setRequired(true))
-
+				.setRequired(true)),
 
 	async execute(interaction) {
 
