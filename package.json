@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "description": "xad1561's personal Discord bot",
   "main": "main.js",
-  "scripts": {
-	  
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "xad1562"
@@ -16,6 +14,7 @@
     "eslint": "^8.56.0"
   },
   "dependencies": {
-    "discord.js": "^14.14.1"
+    "discord.js": "^14.14.1",
+    "pokemon-showdown": "^0.11.9"
   }
 }
