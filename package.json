@@ -1,0 +1,21 @@
+{
+  "name": "xad1562",
+  "version": "1.0.0",
+  "description": "xad1561's personal Discord bot",
+  "main": "main.js",
+  "scripts": {
+	  
+  },
+  "repository": {
+    "type": "git",
+    "url": "xad1562"
+  },
+  "author": "xad1561",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^8.56.0"
+  },
+  "dependencies": {
+    "discord.js": "^14.14.1"
+  }
+}
