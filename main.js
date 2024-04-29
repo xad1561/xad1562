@@ -1,15 +1,18 @@
-// A lot of this code was taken from the discord.js guide https://discordjs.guide/
+// A lot of this code was modified from the discord.js guide https://discordjs.guide/
 // Require the necessary discord.js classes
-const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
+const { Client, Collection, Events, GatewayIntentBits, IntentsBitField } = require('discord.js');
 const { token } = require('./config.json');
 const fs = require('fs');
 const path = require('path');
 
-
 // Create a new client instance
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+const intents = new IntentsBitField();
+intents.add([GatewayIntentBits.Guilds, GatewayIntentBits.DirectMessages]);
+const client = new Client({ intents: intents });
 
+// Create collections
 client.commands = new Collection();
+client.cooldowns = new Collection();
 
 const foldersPath = path.join(__dirname, 'commands');
 const commandFolders = fs.readdirSync(foldersPath);
@@ -35,6 +38,7 @@ client.once(Events.ClientReady, readyClient => {
 	console.log(`Logged in as ${readyClient.user.tag}`);
 });
 
+// Handle commands
 client.on(Events.InteractionCreate, async interaction => {
 	if (!interaction.isChatInputCommand()) return;
 	console.log(interaction);
@@ -46,6 +50,31 @@ client.on(Events.InteractionCreate, async interaction => {
 		return;
 	}
 
+	const { cooldowns } = interaction.client;
+
+	if (!cooldowns.has(command.data.name)) {
+		cooldowns.set(command.data.name, new Collection());
+	}
+
+	// Handle cooldowns
+	const now = Date.now();
+	const timestamps = cooldowns.get(command.data.name);
+	const defaultCooldownDuration = 2;
+	const cooldownAmount = (command.cooldown ?? defaultCooldownDuration) * 1_000;
+
+	if (timestamps.has(interaction.user.id)) {
+		const expirationTime = timestamps.get(interaction.user.id) + cooldownAmount;
+
+		if (now < expirationTime) {
+			const expiredTimestamp = Math.round(expirationTime / 1_000);
+			return interaction.reply({ content: `Please wait, you are on a cooldown for \`${command.data.name}\`. You can use it again <t:${expiredTimestamp}:R>.`, ephemeral: true });
+		}
+	}
+
+	timestamps.set(interaction.user.id, now);
+	setTimeout(() => timestamps.delete(interaction.user.id), cooldownAmount);
+
+	// Execute commands
 	try {
 		await command.execute(interaction);
 	}

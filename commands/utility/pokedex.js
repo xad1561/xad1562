@@ -10,12 +10,16 @@ module.exports = {
 		.addStringOption(option =>
 			option.setName('pokemon')
 				.setDescription('The Pokemon to get info about')
-				.setRequired(true)),
+				.setRequired(true))
+		.addBooleanOption(option =>
+			option.setName('public')
+				.setDescription('Whether or not to send the info in a public message')
+				.setRequired(false)),
 
 	async execute(interaction) {
 
 		// Defer the reply in case it takes more than 3 seconds for some reason
-		await interaction.deferReply({ ephemeral: true });
+		await interaction.deferReply({ ephemeral: !interaction.options.getBoolean('public') });
 		const mon = Dex.species.get(interaction.options.getString('pokemon'));
 		// Declare the variables
 		let reply = '';
