@@ -21,7 +21,6 @@ module.exports = {
 
 		await interaction.deferReply({ ephemeral: !interaction.options.getBoolean('public') });
 
-		let reply = '';
 		let tag = interaction.options.getString('tag');
 		let dataPath = `./data/steam_games/steam_${tag}.json`;
 		let data, titles, r;

@@ -14,7 +14,7 @@
     "eslint": "^8.56.0"
   },
   "dependencies": {
-    "discord.js": "^14.14.1",
+    "discord.js": "^14.15.2",
     "minimist": "^1.2.8",
     "node-fetch": "^2.6.7",
     "pokemon-showdown": "^0.11.9"
