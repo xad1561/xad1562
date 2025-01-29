@@ -16,7 +16,7 @@ module.exports = {
 		catfact: Show a random fact about cats
 		pokedex: Returns information about a Pokemon
 		tragedy: Replies with the tragedy of Darth Plagueis the wise
-		skin: Gets the minecraft skin for a username
+		skin: Gets the Minecraft skin for a username
 		tip: Returns a loading screen tip
 		randomsteamgame: Gets a random Steam game from the top 50 highest rated of a given tag
 		`;

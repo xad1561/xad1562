@@ -5,7 +5,7 @@ module.exports = {
 	cooldown: 10,
 	data: new SlashCommandBuilder()
 		.setName('skin')
-		.setDescription('(WIP, CURRENTLY HAS ISSUES) Gets the Minecraft skin for a specified username')
+		.setDescription('Gets the Minecraft skin for a specified username')
 		.addStringOption(option =>
 			option.setName('username')
 				.setDescription('The username for the skin you want to grab')
