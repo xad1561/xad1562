@@ -42,7 +42,7 @@ module.exports = {
 			const index = Math.floor(Math.random() * tips.length);
 			const reply = tips[index];
 			console.log(`${index + 1}. ${reply}`);
-			await interaction.editReply(`Tip #${index}: ${reply}`);
+			await interaction.editReply(`Tip #${index + 1}: ${reply}`);
 		}
 		else {
 			await interaction.editReply('Tip number is too large or less than 1.');
