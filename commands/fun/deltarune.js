@@ -21,7 +21,10 @@ module.exports = {
 		const days = Math.round(Math.abs((today - deltaruneRelease) / day));
 		let reply;
 
-		if (days > 0) {
+		if (days == 1) {
+			reply = 'DELTARUNE TOMORROW';
+		}
+		else if (days > 0) {
 			reply = `DELTARUNE IN ${days} DAYS`;
 		}
 		else {
