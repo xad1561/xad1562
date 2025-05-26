@@ -19,8 +19,15 @@ module.exports = {
 		const today = new Date();
 
 		const days = Math.round(Math.abs((today - deltaruneRelease) / day));
+		let reply;
 
-		const reply = `DELTARUNE IN ${days} DAYS`;
+		if (days > 0) {
+			reply = `DELTARUNE IN ${days} DAYS`;
+		}
+		else {
+			reply = 'DELTARUNE IS OUT';
+		}
+
 		await interaction.reply({ content: reply.trim(), ephemeral: !interaction.options.getBoolean('public') });
 
 	},
