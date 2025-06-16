@@ -7,7 +7,7 @@ module.exports = {
 	cooldown: 1,
 	data: new SlashCommandBuilder()
 		.setName('randomsteamgame')
-		.setDescription('(HEAVILY OUTDATED) Gets a random free Steam game from the top 50 highest rated of a specified tag.')
+		.setDescription('Gets a random free Steam game from the top 50 highest rated of a specified tag.')
 		.addStringOption(option =>
 			option.setName('tag')
 				.setDescription('The tag to use for filtering. Defaults to no specific tag if none is specified')
