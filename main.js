@@ -1,7 +1,7 @@
 // A lot of this code was modified from the discord.js guide https://discordjs.guide/
 // Require the necessary discord.js classes
 const { Client, Collection, Events, GatewayIntentBits, IntentsBitField } = require('discord.js');
-const { token } = require('./config.json');
+const { token, logging } = require('./config.json');
 const fs = require('fs');
 const path = require('path');
 
@@ -36,12 +36,17 @@ for (const folder of commandFolders) {
 // When the client is ready, run this code (only once).
 client.once(Events.ClientReady, readyClient => {
 	console.log(`Logged in as ${readyClient.user.tag}`);
+	if (!logging) {
+		console.log('Logging is currently disabled');
+	}
 });
 
 // Handle commands
 client.on(Events.InteractionCreate, async interaction => {
 	if (!interaction.isChatInputCommand()) return;
-	console.log(interaction);
+	if (logging) {
+		console.log(interaction);
+	}
 
 	const command = interaction.client.commands.get(interaction.commandName);
 

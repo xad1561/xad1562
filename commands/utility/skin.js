@@ -28,7 +28,7 @@ module.exports = {
 			resp = await fetch('https://sessionserver.mojang.com/session/minecraft/profile/' + uuid);
 			data = await resp.json();
 			const skin = JSON.parse(atob(data.properties[0].value));
-			console.log(skin);
+			// console.log(skin);
 			await interaction.editReply(`Skin for ${username}: ${skin.textures['SKIN'].url}`);
 		}
 		else {
