@@ -15,7 +15,7 @@ module.exports = {
 	async execute(interaction) {
 
 		const day = 1000 * 60 * 60 * 24;
-		const deltaruneRelease = new Date("2025-06-4");
+		const deltaruneRelease = new Date("2026-06-24");
 		const today = new Date();
 
 		const days = Math.round(Math.abs((today - deltaruneRelease) / day));
